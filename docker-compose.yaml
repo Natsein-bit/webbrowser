@@ -1,0 +1,18 @@
+version: '3'
+services:
+
+  notes:
+      image: nginx:latest
+      ports:
+        - "80:80"
+      volumes:
+        - ./nginx.conf:/etc/nginx/conf.d/default.conf
+        - ./:/usr/share/nginx/html/
+
+  firefox:
+    image: kasmweb/firefox:1.13.0-rolling
+    ports:
+      - "4000:6901"
+    environment:
+      - VNC_PW=test
+    shm_size: 512m
